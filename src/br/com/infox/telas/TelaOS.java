@@ -213,7 +213,7 @@ public class TelaOS extends javax.swing.JInternalFrame {
                 filtro.put("os", Integer.parseInt(txtOs.getText()));
                 
                 //usando a classe JasperPrint
-                JasperPrint print = JasperFillManager.fillReport("C:\\reports\\os.jasper",filtro,conexao);
+                JasperPrint print = JasperFillManager.fillReport("C:\\reports\\teste_os.jasper",filtro,conexao);
                 //a linha abaixo exibe o relatório através da classe JasperViewer
                 JasperViewer.viewReport(print,false);
             } catch (Exception e) {

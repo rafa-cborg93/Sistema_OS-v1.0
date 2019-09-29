@@ -128,6 +128,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         MenRel.add(menRelServ);
 
+        menRelCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
         menRelCli.setText("Clientes");
         menRelCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
