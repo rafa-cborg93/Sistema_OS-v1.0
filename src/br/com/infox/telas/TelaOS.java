@@ -7,8 +7,12 @@ package br.com.infox.telas;
 
 import java.sql.*;
 import br.com.infox.dal.ModuloConexao;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -195,6 +199,26 @@ public class TelaOS extends javax.swing.JInternalFrame {
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }
+    private void imprimir_os(){
+        int confirma = JOptionPane.showConfirmDialog(null, "Confirma a emissão"
+                + "desta OS?", "Atenção", JOptionPane.YES_NO_OPTION);
+        if(confirma == JOptionPane.YES_OPTION){
+            //imprimindo relatorio com o Framework JasperReport
+            try {
+                //usando a classe HashMap para fazer o filtro
+                HashMap filtro = new HashMap();
+                filtro.put("os", Integer.parseInt(txtOs.getText()));
+                
+                //usando a classe JasperPrint
+                JasperPrint print = JasperFillManager.fillReport("C:\\reports\\os.jasper",filtro,conexao);
+                //a linha abaixo exibe o relatório através da classe JasperViewer
+                JasperViewer.viewReport(print,false);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+                System.out.println(e);
             }
         }
     }
@@ -460,6 +484,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
 
         btnOsImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infox/icones/iconfinder_vector_66_15_473627.png"))); // NOI18N
         btnOsImprimir.setPreferredSize(new java.awt.Dimension(80, 80));
+        btnOsImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOsImprimirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -607,6 +636,11 @@ public class TelaOS extends javax.swing.JInternalFrame {
         rbtOrc.setSelected(true);
         tipo = "Orçamento";
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void btnOsImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOsImprimirActionPerformed
+        // TODO add your handling code here:
+        imprimir_os();
+    }//GEN-LAST:event_btnOsImprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
